@@ -4,6 +4,7 @@ export default createStore({
   state: {
     productos: [],
     carrito: {},
+    showFooter: false,
   },
   mutations: {
     setProductos(state, payload) {
@@ -28,6 +29,10 @@ export default createStore({
         delete state.carrito[payload];
       }
     },
+
+    changeFooter(state) {
+      state.showFooter = !state.showFooter;
+    },
   },
   actions: {
     async fetchData({ commit }) {
@@ -47,6 +52,10 @@ export default createStore({
         : (producto.cantidad = 1);
 
       commit("setCarrito", producto);
+    },
+
+    mostrarCarrito({ commit }) {
+      commit("changeFooter");
     },
   },
   getters: {

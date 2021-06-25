@@ -13,10 +13,23 @@
     />
   </main>
 
-  <footer
-    class="fixed bottom-0 w-full py-10 text-white bg-opacity-90 bg-primary"
-  >
-    <Carrito />
+  <footer>
+    <transition name="carrito" appear>
+      <div
+        v-if="showFooter"
+        class="fixed bottom-0 w-full py-10 text-white bg-opacity-95 bg-primary"
+      >
+        <Carrito />
+      </div>
+
+      <button
+        @click="mostrarFooter"
+        v-else
+        class="fixed p-4 font-bold text-white rounded-full  md:p-6 bottom-2 right-2 bg-secondary md:bottom-10 md:right-10"
+      >
+        Comprar
+      </button>
+    </transition>
   </footer>
 </template>
 
@@ -39,10 +52,34 @@ export default {
       await store.dispatch("fetchData");
     });
 
+    const showFooter = computed(() => store.state.showFooter);
+
+    const mostrarFooter = () => {
+      store.dispatch("mostrarCarrito");
+    };
+
     const productos = computed(() => store.state.productos);
     // const carrito = computed(() => store.state.carrito);
 
-    return { productos };
+    return { productos, showFooter, mostrarFooter };
   },
 };
 </script>
+
+<style scoped>
+.carrito-enter-from,
+.carrito-leave-to {
+  /* transform: translateY(400px); */
+  opacity: 0;
+}
+
+/* .carrito-leave,
+.carrito-enter-to {
+  opacity: 1;
+} */
+
+.carrito-enter-active,
+.carrito-leave-active {
+  transition: opacity 0.3s;
+}
+</style>
