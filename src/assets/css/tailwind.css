@@ -15,7 +15,7 @@
 }
 
 .card-text {
-  @apply py-2 text-white;
+  @apply py-2 text-xs text-white md:text-base;
 }
 
 .btn {
