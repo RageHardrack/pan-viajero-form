@@ -31,9 +31,11 @@ export default {
   },
   setup() {
     const store = useStore();
+
     const aumentar = (id) => {
       store.commit("aumentar", id);
     };
+
     const disminuir = (id) => {
       store.commit("disminuir", id);
     };

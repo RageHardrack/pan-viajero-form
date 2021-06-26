@@ -65,5 +65,12 @@ export default createStore({
         0
       );
     },
+
+    productosEnCarrito(state) {
+      return Object.values(state.carrito).reduce(
+        (acc, { cantidad }) => acc + cantidad,
+        0
+      );
+    },
   },
 });

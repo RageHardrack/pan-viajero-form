@@ -5,7 +5,7 @@
         class="px-6 py-2 font-bold text-white bg-green-500 rounded-lg"
         @click="vaciar"
       >
-        Realizar Pago
+        Realizar Compra
       </button>
 
       <button

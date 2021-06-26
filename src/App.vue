@@ -27,7 +27,11 @@
         v-else
         class="fixed p-4 font-bold text-white rounded-full  md:p-6 bottom-2 right-2 bg-secondary md:bottom-10 md:right-10"
       >
-        Comprar
+        <span v-if="totalProductos !== 0">
+          Comprar ({{ totalProductos }})
+        </span>
+
+        <span v-else>Comprar</span>
       </button>
     </transition>
   </footer>
@@ -59,9 +63,9 @@ export default {
     };
 
     const productos = computed(() => store.state.productos);
-    // const carrito = computed(() => store.state.carrito);
+    const totalProductos = computed(() => store.getters.productosEnCarrito);
 
-    return { productos, showFooter, mostrarFooter };
+    return { productos, showFooter, mostrarFooter, totalProductos };
   },
 };
 </script>
@@ -69,14 +73,8 @@ export default {
 <style scoped>
 .carrito-enter-from,
 .carrito-leave-to {
-  /* transform: translateY(400px); */
   opacity: 0;
 }
-
-/* .carrito-leave,
-.carrito-enter-to {
-  opacity: 1;
-} */
 
 .carrito-enter-active,
 .carrito-leave-active {
