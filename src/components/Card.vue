@@ -3,15 +3,19 @@
     <img
       :src="producto.thumbnailUrl"
       :alt="`Foto-${producto.title}`"
-      class="card-img"
+      class="mb-2 card-img"
     />
 
-    <div class="py-4">
+    <div class="flex flex-col justify-between">
       <h5 class="card-title">{{ producto.title }}</h5>
-      <p class="card-text">{{ producto.description }}</p>
-      <p class="card-text">
-        S/. <span>{{ producto.precio }}</span>
-      </p>
+
+      <div class="card-text">
+        <p>{{ producto.description }}</p>
+        <br />
+        <p class="font-bold">
+          S/. <span>{{ producto.precio }}</span>
+        </p>
+      </div>
 
       <button @click="agregar(producto)" class="btn">Añadir</button>
     </div>

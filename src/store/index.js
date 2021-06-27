@@ -1,4 +1,11 @@
 import { createStore } from "vuex";
+import axios from "axios";
+
+import { parseData } from "../services/parseData";
+
+const googleSheetUrl = `https://spreadsheets.google.com/feeds/list/${
+  import.meta.env.VITE_APP_SHEET_ID
+}/1/public/values?alt=json`;
 
 export default createStore({
   state: {
@@ -37,8 +44,8 @@ export default createStore({
   actions: {
     async fetchData({ commit }) {
       try {
-        const res = await fetch("api.json");
-        const data = await res.json();
+        const response = await axios.get(googleSheetUrl);
+        const data = parseData(response.data.feed.entry);
 
         commit("setProductos", data);
       } catch (error) {

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .card {
-  @apply p-4 duration-500 transform rounded-lg shadow-lg bg-primary hover:scale-105 hover:opacity-90;
+  @apply flex flex-col justify-between p-4 duration-500 transform rounded-lg shadow-lg bg-primary hover:scale-105 hover:opacity-90;
 }
 
 .card-img {
@@ -19,5 +19,5 @@
 }
 
 .btn {
-  @apply w-full py-2 mt-2 text-xl font-bold text-center text-white rounded-lg bg-secondary;
+  @apply w-full py-2 text-sm font-bold text-center text-white rounded-lg md:text-xl bg-secondary;
 }
