@@ -27,7 +27,9 @@ export default createStore({
     },
 
     aumentar(state, payload) {
-      state.carrito[payload].cantidad += 1;
+      if (state.carrito[payload].cantidad < state.carrito[payload].stock) {
+        state.carrito[payload].cantidad += 1;
+      }
     },
 
     disminuir(state, payload) {
@@ -55,8 +57,9 @@ export default createStore({
 
     agregarAlCarrito({ commit, state }, producto) {
       state.carrito.hasOwnProperty(producto.id)
-        ? (producto.cantidad = state.carrito[producto.id].cantidad + 1)
-        : (producto.cantidad = 1);
+        ? (producto.cantidad =
+            state.carrito[producto.id].cantidad + producto.cantidad)
+        : producto.cantidad;
 
       commit("setCarrito", producto);
     },
@@ -74,10 +77,7 @@ export default createStore({
     },
 
     productosEnCarrito(state) {
-      return Object.values(state.carrito).reduce(
-        (acc, { cantidad }) => acc + cantidad,
-        0
-      );
+      return Object.keys(state.carrito).length;
     },
   },
 });

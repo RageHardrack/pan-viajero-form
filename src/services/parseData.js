@@ -9,6 +9,7 @@ export const parseData = (entries) => {
       precio: entry.gsx$precio.$t,
       thumbnailUrl: entry.gsx$thumbnailurl.$t,
       stock: entry.gsx$stock.$t,
+      cantidad: entry.gsx$cantidad.$t,
     };
 
     productos.push(producto);
