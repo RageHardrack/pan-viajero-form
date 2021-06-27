@@ -1,4 +1,11 @@
 import { createStore } from "vuex";
+import axios from "axios";
+
+import { parseData } from "../services/parseData";
+
+const googleSheetUrl = `https://spreadsheets.google.com/feeds/list/${
+  import.meta.env.VITE_APP_SHEET_ID
+}/1/public/values?alt=json`;
 
 export default createStore({
   state: {
@@ -20,7 +27,9 @@ export default createStore({
     },
 
     aumentar(state, payload) {
-      state.carrito[payload].cantidad += 1;
+      if (state.carrito[payload].cantidad < state.carrito[payload].stock) {
+        state.carrito[payload].cantidad += 1;
+      }
     },
 
     disminuir(state, payload) {
@@ -37,8 +46,8 @@ export default createStore({
   actions: {
     async fetchData({ commit }) {
       try {
-        const res = await fetch("api.json");
-        const data = await res.json();
+        const response = await axios.get(googleSheetUrl);
+        const data = parseData(response.data.feed.entry);
 
         commit("setProductos", data);
       } catch (error) {
@@ -48,8 +57,9 @@ export default createStore({
 
     agregarAlCarrito({ commit, state }, producto) {
       state.carrito.hasOwnProperty(producto.id)
-        ? (producto.cantidad = state.carrito[producto.id].cantidad + 1)
-        : (producto.cantidad = 1);
+        ? (producto.cantidad =
+            state.carrito[producto.id].cantidad + producto.cantidad)
+        : producto.cantidad;
 
       commit("setCarrito", producto);
     },
@@ -67,10 +77,7 @@ export default createStore({
     },
 
     productosEnCarrito(state) {
-      return Object.values(state.carrito).reduce(
-        (acc, { cantidad }) => acc + cantidad,
-        0
-      );
+      return Object.keys(state.carrito).length;
     },
   },
 });
