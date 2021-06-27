@@ -7,7 +7,7 @@
 }
 
 .card-img {
-  @apply w-full mx-auto rounded-lg;
+  @apply w-full mx-auto rounded-lg md:max-h-80;
 }
 
 .card-title {
@@ -19,5 +19,5 @@
 }
 
 .btn {
-  @apply w-full py-2 text-sm font-bold text-center text-white rounded-lg md:text-xl bg-secondary;
+  @apply w-full py-2 text-sm font-bold text-center text-white rounded-lg bg-secondary disabled:opacity-50 md:text-xl;
 }
