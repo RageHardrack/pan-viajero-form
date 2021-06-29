@@ -2,14 +2,14 @@
   <th scope="row" colspan="3" class="h-20 text-center">
     <div class="flex justify-evenly">
       <button
-        class="px-6 py-2 font-bold text-white bg-green-500 rounded-lg"
+        class="px-6 py-2 text-sm font-bold text-white bg-green-500 rounded-lg  md:text-base"
         @click="vaciar"
       >
         Realizar Compra
       </button>
 
       <button
-        class="px-6 py-2 font-bold text-white bg-red-500 rounded-lg"
+        class="px-6 py-2 text-sm font-bold text-white bg-red-500 rounded-lg  md:text-base"
         @click="vaciar"
       >
         Vaciar
