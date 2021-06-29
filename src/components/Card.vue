@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" v-if="producto">
     <img
       :src="producto.thumbnailUrl"
       :alt="`Foto-${producto.title}`"
@@ -35,9 +35,7 @@
       </select>
     </div>
 
-    <button @click="agregar(producto)" class="btn" :disabled="productoAnadido">
-      Añadir
-    </button>
+    <button @click="agregar(producto)" class="btn">Añadir</button>
   </div>
 </template>
 
@@ -56,15 +54,14 @@ export default {
   setup() {
     const store = useStore();
     const cantidadProductos = ref(1);
-    const productoAnadido = ref(false);
 
     const agregar = (producto) => {
       producto.cantidad = cantidadProductos.value;
       store.dispatch("agregarAlCarrito", producto);
-      productoAnadido.value = true;
+      console.log(cantidadProductos.value);
     };
 
-    return { agregar, cantidadProductos, productoAnadido, stock };
+    return { agregar, cantidadProductos, stock };
   },
 };
 </script>

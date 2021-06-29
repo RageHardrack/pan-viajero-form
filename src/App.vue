@@ -25,7 +25,7 @@
       <div v-else>
         <div
           v-if="totalProductos !== 0"
-          class="fixed z-10 w-6 h-6 font-bold text-center text-white transition duration-300 transform bg-red-500 rounded-full  bottom-12 right-1"
+          class="fixed z-10 w-6 h-6 font-bold text-center text-white transition duration-300 transform bg-red-500 rounded-full  md:text-lg md:w-8 md:h-8 md:bottom-24 md:right-10 bottom-12 right-1"
         >
           {{ totalProductos }}
         </div>
