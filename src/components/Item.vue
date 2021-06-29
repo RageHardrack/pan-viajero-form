@@ -1,11 +1,11 @@
 <template>
-  <tr class="w-full h-10 text-sm text-center align-middle md:text-base">
+  <tr class="w-full h-10 text-sm text-center align-middle md:h-14 md:text-base">
     <th scope="row">{{ item.title }}</th>
     <td>{{ item.cantidad }}</td>
 
     <td class="flex items-center h-10 justify-evenly">
       <button
-        class="w-6 h-6 font-bold text-center bg-red-500 rounded-full"
+        class="w-8 h-8 font-bold text-center bg-red-500 rounded-full"
         @click="disminuir(item.id)"
       >
         <svg
@@ -25,7 +25,7 @@
       </button>
 
       <button
-        class="w-6 h-6 font-bold text-center bg-blue-500 rounded-full"
+        class="w-8 h-8 font-bold text-center bg-blue-500 rounded-full"
         @click="aumentar(item.id)"
       >
         <svg

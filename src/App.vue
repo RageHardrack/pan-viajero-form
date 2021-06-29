@@ -32,7 +32,7 @@
 
         <button
           @click="mostrarFooter"
-          class="fixed font-bold text-white duration-200 transform rounded-full  w-14 h-14 md:w-20 md:h-20 bottom-2 right-2 bg-secondary md:bottom-10 md:right-10 hover:opacity-90"
+          class="fixed font-bold text-white duration-200 transform rounded-full  w-14 h-14 md:w-20 md:h-20 bottom-2 right-2 bg-secondary md:bottom-10 md:right-10 hover:opacity-80"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

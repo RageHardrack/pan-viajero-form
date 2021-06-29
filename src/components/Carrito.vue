@@ -22,7 +22,7 @@
 
     <h4 class="mb-10 text-2xl font-bold text-center">Tu Pedido</h4>
 
-    <table class="w-full table-auto">
+    <table class="table w-full table-auto">
       <thead>
         <tr class="h-20">
           <th scope="col" class="text-sm font-bold md:text-lg">Producto</th>
