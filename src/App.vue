@@ -22,17 +22,30 @@
         <Carrito />
       </div>
 
-      <button
-        @click="mostrarFooter"
-        v-else
-        class="fixed p-4 font-bold text-white rounded-full  md:p-6 bottom-2 right-2 bg-secondary md:bottom-10 md:right-10"
-      >
-        <span v-if="totalProductos !== 0">
-          Comprar ({{ totalProductos }})
-        </span>
+      <div v-else>
+        <div
+          v-if="totalProductos !== 0"
+          class="fixed z-10 w-6 h-6 font-bold text-center text-white transition duration-300 transform bg-red-500 rounded-full  md:text-lg md:w-8 md:h-8 md:bottom-24 md:right-10 bottom-12 right-1"
+        >
+          {{ totalProductos }}
+        </div>
 
-        <span v-else>Comprar</span>
-      </button>
+        <button
+          @click="mostrarFooter"
+          class="fixed font-bold text-white duration-200 transform rounded-full  w-14 h-14 md:w-20 md:h-20 bottom-2 right-2 bg-secondary md:bottom-10 md:right-10 hover:opacity-80"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 mx-auto md:w-10 md:h-10"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+            />
+          </svg>
+        </button>
+      </div>
     </transition>
   </footer>
 </template>

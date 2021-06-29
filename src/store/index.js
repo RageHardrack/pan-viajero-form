@@ -2,15 +2,16 @@ import { createStore } from "vuex";
 import axios from "axios";
 
 import { parseData } from "../services/parseData";
+const sheed_id = import.meta.env.VITE_APP_SHEET_ID;
 
-const googleSheetUrl = `https://spreadsheets.google.com/feeds/list/${
-  import.meta.env.VITE_APP_SHEET_ID
-}/1/public/values?alt=json`;
+const googleSheetUrl = `https://spreadsheets.google.com/feeds/list/${sheed_id}/1/public/values?alt=json`;
+
+const initialCarrito = JSON.parse(localStorage.getItem("carrito"));
 
 export default createStore({
   state: {
     productos: [],
-    carrito: {},
+    carrito: initialCarrito ? initialCarrito : {},
     showFooter: false,
   },
   mutations: {
@@ -20,10 +21,12 @@ export default createStore({
 
     setCarrito(state, payload) {
       state.carrito[payload.id] = payload;
+      localStorage.setItem("carrito", JSON.stringify(state.carrito));
     },
 
     vaciarCarrito(state) {
       state.carrito = {};
+      localStorage.removeItem("carrito");
     },
 
     aumentar(state, payload) {
