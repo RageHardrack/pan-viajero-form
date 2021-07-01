@@ -1,25 +1,25 @@
 <template>
-  <th scope="row" colspan="3" class="h-20 text-center">
-    <div class="flex justify-evenly">
+  <div class="grid w-full grid-cols-4 text-center gap-x-4">
+    <div class="grid grid-cols-2 col-span-3 gap-x-4">
       <button
-        class="px-6 py-2 text-sm font-bold text-white bg-red-500 rounded-lg  md:text-base"
+        class="px-4 py-2 text-xs font-bold text-white bg-red-500 rounded-lg  md:px-6 md:text-base"
         @click="vaciar"
       >
         Vaciar
       </button>
 
       <button
-        class="px-6 py-2 text-sm font-bold text-white bg-green-500 rounded-lg  md:text-base"
+        class="px-4 py-2 text-xs font-bold text-white bg-green-500 rounded-lg  md:px-6 md:text-base"
         @click="vaciar"
       >
         Realizar Compra
       </button>
     </div>
-  </th>
 
-  <td class="font-bold text-center">
-    S/. <span>{{ totalPrecio }}</span>
-  </td>
+    <div class="font-bold">
+      S/. <span>{{ totalPrecio }}</span>
+    </div>
+  </div>
 </template>
 
 <script>

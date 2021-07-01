@@ -22,34 +22,26 @@
 
     <h4 class="mb-10 text-2xl font-bold text-center">Tu Pedido</h4>
 
-    <table class="table w-full table-auto">
-      <thead>
-        <tr class="h-20">
-          <th scope="col" class="text-sm font-bold md:text-lg">Producto</th>
-          <th scope="col" class="text-sm font-bold md:text-lg">Cantidad</th>
-          <th scope="col" class="text-sm font-bold md:text-lg">Acción</th>
-          <th scope="col" class="text-sm font-bold md:text-lg">Total</th>
-        </tr>
-      </thead>
+    <div class="w-full px-4 py-4 md:px-10">
+      <div class="grid grid-cols-4 font-bold text-center gap-x-4">
+        <div class="md:text-lg">Producto</div>
+        <div class="md:text-lg">Cantidad</div>
+        <div class="md:text-lg">Acción</div>
+        <div class="md:text-lg">Total</div>
+      </div>
 
-      <tbody>
+      <div class="mb-6 overflow-y-scroll max-h-60 md:max-h-80">
         <Item v-for="item in items" :key="item.id" :item="item" />
-      </tbody>
+      </div>
 
-      <tfoot>
-        <tr>
-          <th
-            scope="row"
-            colspan="4"
-            class="h-20"
-            v-if="Object.keys(items).length === 0"
-          >
-            No hay pedidos...
-          </th>
-          <Footer v-else />
-        </tr>
-      </tfoot>
-    </table>
+      <div
+        class="flex items-center justify-center text-lg font-bold md:text-2xl"
+      >
+        <h3 v-if="Object.keys(items).length === 0">No hay pedidos...</h3>
+
+        <Footer v-else />
+      </div>
+    </div>
 
     <div v-if="Object.keys(items).length !== 0" class="p-4 text-center">
       <h4 class="mb-2 text-xl font-bold">Importante</h4>

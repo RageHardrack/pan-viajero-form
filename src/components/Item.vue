@@ -1,11 +1,12 @@
 <template>
-  <tr class="w-full h-10 text-sm text-center align-middle md:h-14 md:text-base">
-    <th scope="row">{{ item.title }}</th>
-    <td>{{ item.cantidad }}</td>
+  <div class="grid items-center w-full h-10 grid-cols-4 text-center">
+    <div>{{ item.title }}</div>
 
-    <td class="flex items-center h-10 justify-evenly">
+    <div>{{ item.cantidad }}</div>
+
+    <div>
       <button
-        class="w-8 h-8 font-bold text-center bg-red-500 rounded-full"
+        class="w-6 h-6 mr-4 font-bold text-center bg-red-500 rounded-full  md:mr-2 md:w-8 md:h-8"
         @click="disminuir(item.id)"
       >
         <svg
@@ -25,7 +26,7 @@
       </button>
 
       <button
-        class="w-8 h-8 font-bold text-center bg-blue-500 rounded-full"
+        class="w-6 h-6 font-bold text-center bg-blue-500 rounded-full  md:w-8 md:h-8"
         @click="aumentar(item.id)"
       >
         <svg
@@ -43,10 +44,10 @@
           />
         </svg>
       </button>
-    </td>
+    </div>
 
-    <td>S/. {{ item.precio * item.cantidad }}</td>
-  </tr>
+    <div>S/. {{ item.precio * item.cantidad }}</div>
+  </div>
 </template>
 
 <script>

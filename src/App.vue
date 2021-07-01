@@ -17,7 +17,7 @@
     <transition name="carrito" appear>
       <div
         v-if="showFooter"
-        class="fixed bottom-0 w-full py-10 text-white bg-opacity-95 bg-primary"
+        class="fixed bottom-0 w-full py-10 text-white bg-primary"
       >
         <Carrito />
       </div>
