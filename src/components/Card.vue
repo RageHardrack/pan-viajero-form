@@ -1,10 +1,21 @@
 <template>
-  <div class="card" v-if="producto">
+  <div
+    class="relative card"
+    v-if="producto"
+    :class="{ 'filter grayscale': producto.stock == 0 }"
+  >
     <img
       :src="producto.thumbnailUrl"
       :alt="`Foto-${producto.title}`"
       class="mb-2 card-img"
     />
+
+    <div
+      v-if="producto.stock == 0"
+      class="absolute z-10 text-6xl font-bold text-red-500 transform -translate-x-1/2 -translate-y-1/2  filter-none grayscale-0 top-1/2 left-1/2"
+    >
+      Agotado
+    </div>
 
     <div>
       <h5 class="card-title">{{ producto.title }}</h5>
@@ -35,7 +46,13 @@
       </select>
     </div>
 
-    <button @click="agregar(producto)" class="btn">Añadir</button>
+    <button
+      @click="agregar(producto)"
+      :disabled="{ true: producto.stocks == 0 }"
+      class="btn"
+    >
+      Añadir
+    </button>
   </div>
 </template>
 
@@ -58,7 +75,6 @@ export default {
     const agregar = (producto) => {
       producto.cantidad = cantidadProductos.value;
       store.dispatch("agregarAlCarrito", producto);
-      console.log(cantidadProductos.value);
     };
 
     return { agregar, cantidadProductos, stock };
