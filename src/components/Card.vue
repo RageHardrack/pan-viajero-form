@@ -47,17 +47,20 @@
     </div>
 
     <button
+      v-if="producto.stock == 0"
       @click="agregar(producto)"
-      :disabled="{ true: producto.stocks == 0 }"
+      disabled
       class="btn"
     >
       Añadir
     </button>
+
+    <button v-else @click="agregar(producto)" class="btn">Añadir</button>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 
 const stock = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
