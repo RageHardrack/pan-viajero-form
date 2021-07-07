@@ -30,7 +30,7 @@
         <div class="md:text-lg">Total</div>
       </div>
 
-      <div class="mb-6 overflow-y-scroll max-h-60 md:max-h-80">
+      <div class="my-6 overflow-y-scroll max-h-60 md:max-h-80">
         <Item v-for="item in items" :key="item.id" :item="item" />
       </div>
 

@@ -6,6 +6,7 @@
   <main
     class="container grid min-h-screen grid-cols-2 gap-8 px-4 mx-auto my-10  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
+    <div class="overlay" v-if="showFooter"></div>
     <Card
       v-for="producto of productos"
       :key="producto.id"

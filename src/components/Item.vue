@@ -1,5 +1,5 @@
 <template>
-  <div class="grid items-center w-full h-10 grid-cols-4 text-center">
+  <div class="grid items-center w-full h-12 grid-cols-4 text-center">
     <div>{{ item.title }}</div>
 
     <div>{{ item.cantidad }}</div>

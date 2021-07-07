@@ -1,18 +1,17 @@
+// :class="{ 'filter grayscale': producto.stock == 0 }"
 <template>
-  <div
-    class="relative card"
-    v-if="producto"
-    :class="{ 'filter grayscale': producto.stock == 0 }"
-  >
+  <div class="relative card" v-if="producto">
     <img
       :src="producto.thumbnailUrl"
       :alt="`Foto-${producto.title}`"
       class="mb-2 card-img"
     />
 
+    <div class="overlay-card" v-if="producto.stock == 0"></div>
+
     <div
       v-if="producto.stock == 0"
-      class="absolute z-10 text-6xl font-bold text-red-500 transform -translate-x-1/2 -translate-y-1/2  filter-none grayscale-0 top-1/2 left-1/2"
+      class="absolute z-10 text-6xl font-bold text-red-500 transform -translate-x-1/2 -translate-y-1/2  top-1/2 left-1/2"
     >
       Agotado
     </div>
@@ -40,7 +39,7 @@
         class="block w-10 text-center text-black rounded md:w-14"
         id="cantidadProductos"
       >
-        <option v-for="item in stock" :key="item" :value="item">
+        <option v-for="item in producto.stock" :key="item" :value="item">
           {{ item }}
         </option>
       </select>
@@ -50,7 +49,7 @@
       v-if="producto.stock == 0"
       @click="agregar(producto)"
       disabled
-      class="btn"
+      class="cursor-default btn"
     >
       Añadir
     </button>
@@ -62,8 +61,6 @@
 <script>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-
-const stock = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 export default {
   props: {
@@ -80,7 +77,7 @@ export default {
       store.dispatch("agregarAlCarrito", producto);
     };
 
-    return { agregar, cantidadProductos, stock };
+    return { agregar, cantidadProductos };
   },
 };
 </script>
