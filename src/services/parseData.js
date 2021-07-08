@@ -6,9 +6,9 @@ export const parseData = (entries) => {
       id: entry.gsx$id.$t,
       title: entry.gsx$title.$t,
       description: entry.gsx$description.$t,
-      precio: entry.gsx$precio.$t,
+      precio: +entry.gsx$precio.$t,
       thumbnailUrl: entry.gsx$thumbnailurl.$t,
-      stock: entry.gsx$stock.$t,
+      stock: +entry.gsx$stock.$t,
       cantidad: entry.gsx$cantidad.$t,
     };
 

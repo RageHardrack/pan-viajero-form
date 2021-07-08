@@ -6,6 +6,7 @@
   <main
     class="container grid min-h-screen grid-cols-2 gap-8 px-4 mx-auto my-10  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
+    <div class="overlay" v-if="showFooter"></div>
     <Card
       v-for="producto of productos"
       :key="producto.id"
@@ -17,7 +18,7 @@
     <transition name="carrito" appear>
       <div
         v-if="showFooter"
-        class="fixed bottom-0 w-full py-10 text-white bg-opacity-95 bg-primary"
+        class="fixed bottom-0 z-40 w-full py-10 text-white bg-primary"
       >
         <Carrito />
       </div>
@@ -25,7 +26,7 @@
       <div v-else>
         <div
           v-if="totalProductos !== 0"
-          class="fixed z-10 w-6 h-6 font-bold text-center text-white transition duration-300 transform bg-red-500 rounded-full  md:text-lg md:w-8 md:h-8 md:bottom-24 md:right-10 bottom-12 right-1"
+          class="fixed z-10 w-6 h-6 font-bold text-center text-white transition duration-300 transform bg-red-500 rounded-full  animate-bounce md:text-lg md:w-8 md:h-8 md:bottom-24 md:right-10 bottom-12 right-1"
         >
           {{ totalProductos }}
         </div>
