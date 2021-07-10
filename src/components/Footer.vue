@@ -10,7 +10,7 @@
 
       <button
         class="px-4 py-2 mx-auto text-xs font-bold text-white bg-green-500 rounded-lg  md:w-1/2 md:px-6 md:text-base"
-        @click="vaciar"
+        @click="comprar"
       >
         Realizar Compra
       </button>
@@ -35,7 +35,13 @@ export default {
     const vaciar = () => {
       store.commit("vaciarCarrito");
     };
-    return { totalPrecio, vaciar };
+
+    const comprar = () => {
+      store.dispatch("mostrarCarrito");
+      store.dispatch("mostrarForm");
+    };
+
+    return { totalPrecio, vaciar, comprar };
   },
 };
 </script>
