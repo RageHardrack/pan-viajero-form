@@ -2,9 +2,10 @@ import { createStore } from "vuex";
 import axios from "axios";
 
 import { parseData } from "../services/parseData";
-const sheed_id = import.meta.env.VITE_APP_SHEET_ID;
 
-const googleSheetUrl = `https://spreadsheets.google.com/feeds/list/${sheed_id}/1/public/values?alt=json`;
+const googleSheetUrl = `https://spreadsheets.google.com/feeds/list/${
+  import.meta.env.VITE_APP_SHEET_ID
+}/1/public/values?alt=json`;
 
 const initialCarrito = JSON.parse(localStorage.getItem("carrito"));
 
@@ -13,6 +14,8 @@ export default createStore({
     productos: [],
     carrito: initialCarrito ? initialCarrito : {},
     showFooter: false,
+    showForm: false,
+    showMsg: false,
   },
   mutations: {
     setProductos(state, payload) {
@@ -32,6 +35,7 @@ export default createStore({
     aumentar(state, payload) {
       if (state.carrito[payload].cantidad < state.carrito[payload].stock) {
         state.carrito[payload].cantidad += 1;
+        localStorage.setItem("carrito", JSON.stringify(state.carrito));
       }
     },
 
@@ -39,11 +43,20 @@ export default createStore({
       state.carrito[payload].cantidad -= 1;
       if (state.carrito[payload].cantidad === 0) {
         delete state.carrito[payload];
+        localStorage.setItem("carrito", JSON.stringify(state.carrito));
       }
     },
 
     changeFooter(state) {
       state.showFooter = !state.showFooter;
+    },
+
+    changeForm(state) {
+      state.showForm = !state.showForm;
+    },
+
+    changeMsg(state) {
+      state.showMsg = !state.showMsg;
     },
   },
   actions: {
@@ -69,6 +82,14 @@ export default createStore({
 
     mostrarCarrito({ commit }) {
       commit("changeFooter");
+    },
+
+    mostrarForm({ commit }) {
+      commit("changeForm");
+    },
+
+    mostrarMsg({ commit }) {
+      commit("changeMsg");
     },
   },
   getters: {

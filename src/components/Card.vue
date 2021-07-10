@@ -11,7 +11,7 @@
 
     <div
       v-if="producto.stock == 0"
-      class="absolute z-10 text-6xl font-bold text-red-500 transform -translate-x-1/2 -translate-y-1/2  top-1/2 left-1/2"
+      class="absolute z-10 text-2xl font-bold text-red-500 transform -translate-x-1/2 -translate-y-1/2  md:text-6xl top-1/2 left-1/2"
     >
       Agotado
     </div>

@@ -6,12 +6,23 @@
   <main
     class="container grid min-h-screen grid-cols-2 gap-8 px-4 mx-auto my-10  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
   >
-    <div class="overlay" v-if="showFooter"></div>
+    <transition name="fade-overlay">
+      <div class="overlay" v-if="showFooter || showForm || showMsg"></div>
+    </transition>
+
     <Card
       v-for="producto of productos"
       :key="producto.id"
       :producto="producto"
     />
+
+    <transition name="carrito" appear>
+      <FormPedido v-if="showForm" />
+    </transition>
+
+    <transition name="carrito" appear>
+      <MsgExito v-if="showMsg" />
+    </transition>
   </main>
 
   <footer>
@@ -59,10 +70,12 @@ import { useStore } from "vuex";
 import TheNavbar from "./components/TheNavbar.vue";
 import Card from "./components/Card.vue";
 import Carrito from "./components/Carrito.vue";
+import FormPedido from "./components/FormPedido.vue";
+import MsgExito from "./components/MsgExito.vue";
 
 export default {
   name: "App",
-  components: { TheNavbar, Card, Carrito },
+  components: { TheNavbar, Card, Carrito, MsgExito, FormPedido },
   setup() {
     const store = useStore();
 
@@ -71,6 +84,8 @@ export default {
     });
 
     const showFooter = computed(() => store.state.showFooter);
+    const showForm = computed(() => store.state.showForm);
+    const showMsg = computed(() => store.state.showMsg);
 
     const mostrarFooter = () => {
       store.dispatch("mostrarCarrito");
@@ -79,7 +94,14 @@ export default {
     const productos = computed(() => store.state.productos);
     const totalProductos = computed(() => store.getters.productosEnCarrito);
 
-    return { productos, showFooter, mostrarFooter, totalProductos };
+    return {
+      productos,
+      showFooter,
+      showForm,
+      showMsg,
+      mostrarFooter,
+      totalProductos,
+    };
   },
 };
 </script>
@@ -92,6 +114,16 @@ export default {
 
 .carrito-enter-active,
 .carrito-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-overlay-enter-from,
+.fade-overlay-leave-to {
+  opacity: 0;
+}
+
+.fade-overlay-enter-active,
+.fade-overlay-leave-active {
   transition: opacity 0.3s;
 }
 </style>

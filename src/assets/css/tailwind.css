@@ -7,11 +7,15 @@ button {
 }
 
 .overlay {
-  @apply fixed inset-0 z-10 h-screen bg-black opacity-60;
+  @apply fixed inset-0 z-20 h-screen bg-black opacity-60;
 }
 
 .overlay-card {
   @apply fixed inset-0 z-10 bg-gray-800 rounded-lg opacity-70;
+}
+
+.center-modal {
+  @apply transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2;
 }
 
 .card {
@@ -28,6 +32,10 @@ button {
 
 .card-text {
   @apply py-4 text-xs text-white md:text-base;
+}
+
+.input {
+  @apply block w-full p-2 border-2 rounded-lg focus:outline-none focus:border-primary;
 }
 
 .btn {
